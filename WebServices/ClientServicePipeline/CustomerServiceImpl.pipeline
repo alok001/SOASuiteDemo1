@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:pipelineEntry xmlns:con="http://www.bea.com/wli/sb/pipeline/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con1="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config" xmlns:con3="http://www.bea.com/wli/sb/stages/transform/config">
+    <con:coreEntry>
+        <con:binding type="SOAP" isSoap12="false" xsi:type="con:SoapBindingType">
+            <con:wsdl ref="CustomerRestAdapter/Resources/WSDL/CustomerService"/>
+            <con:binding>
+                <con:name>customer_service_bind</con:name>
+                <con:namespace>http://xmlns.oracle.com/DemoRestAdapter/CustomerRestAdapter/CustomerService</con:namespace>
+            </con:binding>
+        </con:binding>
+        <con:xqConfiguration>
+            <con:snippetVersion>1.0</con:snippetVersion>
+        </con:xqConfiguration>
+    </con:coreEntry>
+    <con:router>
+        <con:pipeline type="request" name="request-N53eeb21f.N562c333d.0.1742c67dcaa.N8000">
+            <con:stage id="_StageId-N53eeb21f.N562c333d.0.1742c67dcaa.N7ffe" name="InitialRequestStage">
+                <con:context>
+                    <con2:userNsDecl prefix="cus" namespace="http://tech.com/CustomerService"/>
+                </con:context>
+                <con:actions>
+                    <con3:assign varName="id">
+                        <con2:id>_ActionId-N53eeb21f.N562c333d.0.1742c67dcaa.N7ff0</con2:id>
+                        <con3:expr>
+                            <con2:xqueryText>fn:data($body//*:Id)</con2:xqueryText>
+                        </con3:expr>
+                    </con3:assign>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-N53eeb21f.N562c333d.0.1742c67dcaa.N7fff">
+            <con:stage id="_StageId-N53eeb21f.N562c333d.0.1742c67dcaa.N7ffd" name="InitialResponseStage">
+                <con:context/>
+                <con:actions/>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="request" name="request-N53eeb21f.N562c333d.0.1742c67dcaa.N7ffa">
+            <con:stage id="_StageId-N53eeb21f.N562c333d.0.1742c67dcaa.N7ff8" name="AddCustomerRequest">
+                <con:context/>
+                <con:actions>
+                    <con3:assign varName="addCustomerReq">
+                        <con2:id>_ActionId-ac8d288.7b883021.0.1742c86472a.N7ffe</con2:id>
+                        <con3:expr>
+                            <con2:xqueryTransform>
+                                <con2:resource ref="CustomerRestAdapter/Resources/Xquery/addCustomerRequestToDB"/>
+                                <con2:param name="addCustomer">
+                                    <con2:path>$body/*</con2:path>
+                                </con2:param>
+                            </con2:xqueryTransform>
+                        </con3:expr>
+                    </con3:assign>
+                    <con3:replace contents-only="true" varName="body">
+                        <con2:id>_ActionId-ac8d288.7b883021.0.1742c86472a.N7ffb</con2:id>
+                        <con3:expr>
+                            <con2:xqueryText>$addCustomerReq</con2:xqueryText>
+                        </con3:expr>
+                    </con3:replace>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-N53eeb21f.N562c333d.0.1742c67dcaa.N7ff9">
+            <con:stage id="_StageId-N53eeb21f.N562c333d.0.1742c67dcaa.N7ff7" name="AddCustomerResponse">
+                <con:context/>
+                <con:actions>
+                    <con3:assign varName="addCustomerResp">
+                        <con2:id>_ActionId-ac8d288.7b883021.0.1742c86472a.N7ff8</con2:id>
+                        <con3:expr>
+                            <con2:xqueryTransform>
+                                <con2:resource ref="CustomerRestAdapter/Resources/Xquery/addCustomerResponseFromDB"/>
+                                <con2:param name="addCustResp">
+                                    <con2:path>$body/*</con2:path>
+                                </con2:param>
+                            </con2:xqueryTransform>
+                        </con3:expr>
+                    </con3:assign>
+                    <con3:replace contents-only="true" varName="body">
+                        <con2:id>_ActionId-ac8d288.7b883021.0.1742c86472a.N7ff5</con2:id>
+                        <con3:expr>
+                            <con2:xqueryText>$addCustomerResp</con2:xqueryText>
+                        </con3:expr>
+                    </con3:replace>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:flow>
+            <con:pipeline-node name="Pipeline Pair Node1">
+                <con:request>request-N53eeb21f.N562c333d.0.1742c67dcaa.N8000</con:request>
+                <con:response>response-N53eeb21f.N562c333d.0.1742c67dcaa.N7fff</con:response>
+            </con:pipeline-node>
+            <con:branch-node type="operation" id="_FlowId-N53eeb21f.N562c333d.0.1742c67dcaa.N7ffc" name="BranchNode1">
+                <con:context/>
+                <con:branch-table>
+                    <con:branch name="addCustomer">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:pipeline-node name="Pipeline Pair Node2">
+                                <con:request>request-N53eeb21f.N562c333d.0.1742c67dcaa.N7ffa</con:request>
+                                <con:response>response-N53eeb21f.N562c333d.0.1742c67dcaa.N7ff9</con:response>
+                            </con:pipeline-node>
+                            <con:route-node name="RouteNode1">
+                                <con:context/>
+                                <con:actions>
+                                    <con1:route>
+                                        <con2:id>_ActionId-N53eeb21f.N562c333d.0.1742c67dcaa.N7ff3</con2:id>
+                                        <con1:service ref="CustomerRestAdapter/WebServices/TargetService/AddCustomerService" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                        <con1:operation>dbReference</con1:operation>
+                                        <con1:outboundTransform/>
+                                        <con1:responseTransform/>
+                                    </con1:route>
+                                </con:actions>
+                            </con:route-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:default-branch>
+                        <con:flow/>
+                    </con:default-branch>
+                </con:branch-table>
+            </con:branch-node>
+        </con:flow>
+    </con:router>
+</con:pipelineEntry>

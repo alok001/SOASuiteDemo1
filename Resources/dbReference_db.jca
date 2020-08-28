@@ -1,0 +1,13 @@
+<adapter-config name="dbReference" adapter="db" wsdlLocation="dbReference.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+  
+  <connection-factory UIConnectionName="Connection1" location="eis/DB/Connection1"/>
+  <endpoint-interaction portType="dbReference_ptt" operation="dbReference">
+    <interaction-spec className="oracle.tip.adapter.db.DBStoredProcedureInteractionSpec">
+      <property name="SchemaName" value="DEV13C_SOAINFRA"/>
+      <property name="PackageName" value="CUSTOM_PACKAGE"/>
+      <property name="ProcedureName" value="ADDCUSTOMER"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+    </interaction-spec>
+  </endpoint-interaction>
+
+</adapter-config>
