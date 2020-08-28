@@ -1,0 +1,14 @@
+<adapter-config name="RemoveCustomerService" adapter="db" wsdlLocation="RemoveCustomerService.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+  
+  <connection-factory UIConnectionName="Connection1" location="eis/DB/Connection1"/>
+  <endpoint-interaction portType="RemoveCustomerService_ptt" operation="RemoveCustomerService">
+    <interaction-spec className="oracle.tip.adapter.db.DBStoredProcedureInteractionSpec">
+      <property name="SchemaName" value="DEV13C_SOAINFRA"/>
+      <property name="PackageName" value="CUSTOM_PACKAGE"/>
+      <property name="ProcedureName" value="REMOVECUSTOMER"/>
+      <property name="QueryTimeout" value="3"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+    </interaction-spec>
+  </endpoint-interaction>
+
+</adapter-config>

@@ -11,7 +11,7 @@
                 <con:name>customer_service_bind</con:name>
                 <con:namespace>http://xmlns.oracle.com/DemoRestAdapter/CustomerRestAdapter/CustomerService</con:namespace>
             </con:binding>
-            <con:wadl ref="CustomerRestAdapter/Resources/CustomerServiceAPI"/>
+            <con:wadl ref="CustomerRestAdapter/Resources/DBArtifacts/CustomerServiceAPI"/>
         </ser:binding>
         <oper:operations enabled="true"/>
         <ser:ws-policy>

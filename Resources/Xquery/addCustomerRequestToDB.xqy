@@ -5,7 +5,7 @@ xquery version "1.0" encoding "utf-8";
 declare namespace ns1="http://tech.com/CustomerService";
 (:: import schema at "../Schema/CustomerService.xsd" ::)
 declare namespace ns2="http://xmlns.oracle.com/pcbpel/adapter/db/sp/dbReference";
-(:: import schema at "../dbReference_sp.xsd" ::)
+(:: import schema at "../DBArtifacts/dbReference_sp.xsd" ::)
 
 declare variable $addCustomer as element() (:: schema-element(ns1:addCustomerRequest) ::) external;
 
