@@ -160,7 +160,7 @@
                             </con:route-node>
                         </con:flow>
                     </con:branch>
-                    <con:branch name="removeCustomer">
+                    <con:branch name="removeCustomerData">
                         <con:operator>equals</con:operator>
                         <con:value/>
                         <con:flow>
