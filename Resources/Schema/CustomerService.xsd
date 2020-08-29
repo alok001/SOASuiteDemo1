@@ -14,6 +14,14 @@ xmlns="http://tech.com/CustomerService"
       </xsd:complexType>
   </xsd:element>
    
+   <xsd:element name="removeCustomerRequest">
+    <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element name="Id" type="xsd:int"/>
+         </xsd:sequence>
+      </xsd:complexType>
+  </xsd:element>
+   
    <xsd:element name="commonResponse">
       <xsd:complexType>
          <xsd:sequence>

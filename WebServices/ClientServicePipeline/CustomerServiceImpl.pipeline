@@ -82,6 +82,54 @@
                 </con:actions>
             </con:stage>
         </con:pipeline>
+        <con:pipeline type="request" name="request-ac8d374.N7277340f.0.17439345f22.N8000">
+            <con:stage id="_StageId-ac8d374.N7277340f.0.17439345f22.N7ffe" name="RemoveCustomerRequest">
+                <con:context/>
+                <con:actions>
+                    <con3:assign varName="removeCustomerReq">
+                        <con2:id>_ActionId-ac8d374.N7277340f.0.17439345f22.N7ffa</con2:id>
+                        <con3:expr>
+                            <con2:xqueryTransform>
+                                <con2:resource ref="CustomerRestAdapter/Resources/Xquery/removeCustomerRequestToDB"/>
+                                <con2:param name="removeCust">
+                                    <con2:path>$body/*</con2:path>
+                                </con2:param>
+                            </con2:xqueryTransform>
+                        </con3:expr>
+                    </con3:assign>
+                    <con3:replace contents-only="true" varName="body">
+                        <con2:id>_ActionId-ac8d374.N7277340f.0.17439345f22.N7ff7</con2:id>
+                        <con3:expr>
+                            <con2:xqueryText>$removeCustomerReq</con2:xqueryText>
+                        </con3:expr>
+                    </con3:replace>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-ac8d374.N7277340f.0.17439345f22.N7fff">
+            <con:stage id="_StageId-ac8d374.N7277340f.0.17439345f22.N7ffd" name="RemoveCustomerResponse">
+                <con:context/>
+                <con:actions>
+                    <con3:assign varName="removeCustomerResp">
+                        <con2:id>_ActionId-ac8d374.N7277340f.0.17439345f22.N7ff4</con2:id>
+                        <con3:expr>
+                            <con2:xqueryTransform>
+                                <con2:resource ref="CustomerRestAdapter/Resources/Xquery/removeCustomerResponseFromDB"/>
+                                <con2:param name="removeCustResp">
+                                    <con2:path>$body/*</con2:path>
+                                </con2:param>
+                            </con2:xqueryTransform>
+                        </con3:expr>
+                    </con3:assign>
+                    <con3:replace contents-only="true" varName="body">
+                        <con2:id>_ActionId-ac8d374.N7277340f.0.17439345f22.N7ff1</con2:id>
+                        <con3:expr>
+                            <con2:xqueryText>$removeCustomerResp</con2:xqueryText>
+                        </con3:expr>
+                    </con3:replace>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
         <con:flow>
             <con:pipeline-node name="Pipeline Pair Node1">
                 <con:request>request-N53eeb21f.N562c333d.0.1742c67dcaa.N8000</con:request>
@@ -98,13 +146,35 @@
                                 <con:request>request-N53eeb21f.N562c333d.0.1742c67dcaa.N7ffa</con:request>
                                 <con:response>response-N53eeb21f.N562c333d.0.1742c67dcaa.N7ff9</con:response>
                             </con:pipeline-node>
-                            <con:route-node name="RouteNode1">
+                            <con:route-node name="RoutetToAddCustomer">
                                 <con:context/>
                                 <con:actions>
                                     <con1:route>
                                         <con2:id>_ActionId-N53eeb21f.N562c333d.0.1742c67dcaa.N7ff3</con2:id>
                                         <con1:service ref="CustomerRestAdapter/WebServices/TargetService/AddCustomerService" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
                                         <con1:operation>dbReference</con1:operation>
+                                        <con1:outboundTransform/>
+                                        <con1:responseTransform/>
+                                    </con1:route>
+                                </con:actions>
+                            </con:route-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="removeCustomer">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:pipeline-node name="Pipeline Pair Node3">
+                                <con:request>request-ac8d374.N7277340f.0.17439345f22.N8000</con:request>
+                                <con:response>response-ac8d374.N7277340f.0.17439345f22.N7fff</con:response>
+                            </con:pipeline-node>
+                            <con:route-node name="RouteToRemoveCustomer">
+                                <con:context/>
+                                <con:actions>
+                                    <con1:route>
+                                        <con2:id>_ActionId-ac8d374.N7277340f.0.17439345f22.N7fee</con2:id>
+                                        <con1:service ref="CustomerRestAdapter/WebServices/TargetService/RemoveCustomerService" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                        <con1:operation>RemoveCustomerService</con1:operation>
                                         <con1:outboundTransform/>
                                         <con1:responseTransform/>
                                     </con1:route>

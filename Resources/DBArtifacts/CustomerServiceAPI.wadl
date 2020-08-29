@@ -1,7 +1,8 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
 <application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:inp1="http://tech.com/CustomerService" xmlns="http://wadl.dev.java.net/2009/02">
    <doc title="CustomerServiceAPI">Customer Rest Service to add , remove , update and delete customer</doc>
    <grammars>
-      <xsd:schema xmlns:tns="http://xmlns.oracle.com/DemoRestAdapter/CustomerRestAdapter/CustomerService" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+      <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
             <xsd:import namespace="http://tech.com/CustomerService" schemaLocation="../Schema/CustomerService.xsd"/>
         </xsd:schema>
    </grammars>
@@ -14,6 +15,14 @@
             </request>
             <response status="200">
                <representation mediaType="application/xml" element="cns:commonResponse" xmlns:cns="http://tech.com/CustomerService"/>
+               <representation mediaType="application/json" element="cns:commonResponse" xmlns:cns="http://tech.com/CustomerService"/>
+            </response>
+         </method>
+         <method name="DELETE" soa:wsdlOperation="removeCustomerData">
+            <request soa:paramElement="pns:removeCustomerRequest" xmlns:pns="http://tech.com/CustomerService">
+               <param name="Id" style="query" soa:expression="$msg.request/inp1:Id" type="xsd:int"/>
+            </request>
+            <response status="200">
                <representation mediaType="application/json" element="cns:commonResponse" xmlns:cns="http://tech.com/CustomerService"/>
             </response>
          </method>

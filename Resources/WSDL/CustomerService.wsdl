@@ -9,7 +9,7 @@
      xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
     >
     <wsdl:types>
-        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <xsd:schema>
             <xsd:import namespace="http://tech.com/CustomerService" schemaLocation="../Schema/CustomerService.xsd"/>
         </xsd:schema>
     </wsdl:types>
@@ -19,10 +19,27 @@
     <wsdl:message name="replyMessage">
         <wsdl:part name="part1" element="inp1:commonResponse"/>
     </wsdl:message>
+    <wsdl:message name="removeCustomerReq">
+        <wsdl:part name="part1" element="inp1:removeCustomerRequest"/>
+    </wsdl:message>
+    <wsdl:message name="removeCustomerData_inputMessage">
+        <wsdl:part name="request" element="inp1:removeCustomerRequest"/>
+    </wsdl:message>
+    <wsdl:message name="removeCustomerData_outputMessage">
+        <wsdl:part name="reply" element="inp1:commonResponse"/>
+    </wsdl:message>
     <wsdl:portType name="customer_service_ptt">
         <wsdl:operation name="addCustomer">
             <wsdl:input message="tns:requestMessage"/>
             <wsdl:output message="tns:replyMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="removeCustomer">
+            <wsdl:input message="tns:removeCustomerReq"/>
+            <wsdl:output message="tns:replyMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="removeCustomerData">
+            <wsdl:input message="tns:removeCustomerData_inputMessage"/>
+            <wsdl:output message="tns:removeCustomerData_outputMessage"/>
         </wsdl:operation>
     </wsdl:portType>
     <wsdl:binding name="customer_service_bind" type="tns:customer_service_ptt">
@@ -34,6 +51,24 @@
             </wsdl:input>
             <wsdl:output>
                 <soap:body use="literal" namespace="http://xmlns.oracle.com/DemoRestAdapter/CustomerRestAdapter/CustomerService"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="removeCustomer">
+            <soap:operation style="document" soapAction="removeCustomer"/>
+            <wsdl:input>
+                <soap:body use="literal" namespace="http://xmlns.oracle.com/DemoRestAdapter/CustomerRestAdapter/CustomerService"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" namespace="http://xmlns.oracle.com/DemoRestAdapter/CustomerRestAdapter/CustomerService"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="removeCustomerData">
+            <soap:operation soapAction="removeCustomerData"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
             </wsdl:output>
         </wsdl:operation>
     </wsdl:binding>
