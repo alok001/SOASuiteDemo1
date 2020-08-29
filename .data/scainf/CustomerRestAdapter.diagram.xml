@@ -25,11 +25,11 @@
         <dgm:operations/>
     </dgm:gService>
     <dgm:gReference name="RemoveCustomerService">
-        <dgm:body borderWidth="2" arcRad="20" X="816" Y="26" width="136" height="54">
+        <dgm:body borderWidth="2" arcRad="20" X="838" Y="26" width="136" height="54">
             <dgm:borderColor r="153" g="153" b="153"/>
             <dgm:bgColor r="255" g="255" b="255"/>
         </dgm:body>
-        <dgm:shadow arcRad="20" X="806" Y="19" width="156" height="68">
+        <dgm:shadow arcRad="20" X="828" Y="19" width="156" height="68">
             <dgm:bgColor r="196" g="228" b="240"/>
         </dgm:shadow>
         <dgm:inputPort name="RemoveCustomerService" X="-10" Y="0" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="SB Interface" callbackInterface="SB Interface"/>
@@ -37,11 +37,11 @@
         <dgm:operations/>
     </dgm:gReference>
     <dgm:gReference name="AddCustomerService">
-        <dgm:body borderWidth="2" arcRad="20" X="816" Y="114" width="136" height="54">
+        <dgm:body borderWidth="2" arcRad="20" X="838" Y="114" width="136" height="54">
             <dgm:borderColor r="153" g="153" b="153"/>
             <dgm:bgColor r="255" g="255" b="255"/>
         </dgm:body>
-        <dgm:shadow arcRad="20" X="806" Y="107" width="156" height="68">
+        <dgm:shadow arcRad="20" X="828" Y="107" width="156" height="68">
             <dgm:bgColor r="196" g="228" b="240"/>
         </dgm:shadow>
         <dgm:inputPort name="AddCustomerService" X="-10" Y="0" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="SB Interface" callbackInterface="SB Interface"/>
@@ -49,12 +49,12 @@
         <dgm:operations/>
     </dgm:gReference>
     <dgm:gComponent name="CustomerServiceImpl">
-        <dgm:body borderWidth="2" arcRad="20" X="422" Y="54" width="130" height="86">
+        <dgm:body borderWidth="2" arcRad="20" X="433" Y="54" width="130" height="86">
             <dgm:borderColor r="109" g="136" b="65"/>
             <dgm:lightBgColor r="201" g="224" b="155"/>
             <dgm:darkBgColor r="157" g="195" b="93"/>
         </dgm:body>
-        <dgm:shadow arcRad="20" X="412" Y="47" width="150" height="102">
+        <dgm:shadow arcRad="20" X="423" Y="47" width="150" height="102">
             <dgm:bgColor r="196" g="228" b="240"/>
         </dgm:shadow>
         <dgm:inputPort name="__service__" X="-10" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="SB Interface" callbackInterface="SB Interface"/>
@@ -65,28 +65,28 @@
     <dgm:gWireLink source="CustomerService" target="CustomerServiceImpl/__service__" width="2">
         <dgm:gSegment X1="168" Y1="124" X2="192" Y2="124"/>
         <dgm:gSegment X1="192" Y1="124" X2="192" Y2="79"/>
-        <dgm:gSegment X1="192" Y1="79" X2="412" Y2="79"/>
+        <dgm:gSegment X1="192" Y1="79" X2="423" Y2="79"/>
         <dgm:baseColor r="153" g="153" b="153"/>
         <dgm:selectedColor r="49" g="106" b="196"/>
     </dgm:gWireLink>
     <dgm:gWireLink source="CustomerServiceAPI" target="CustomerServiceImpl/__service__" width="2">
         <dgm:gSegment X1="168" Y1="36" X2="207" Y2="36"/>
         <dgm:gSegment X1="207" Y1="36" X2="207" Y2="79"/>
-        <dgm:gSegment X1="207" Y1="79" X2="412" Y2="79"/>
+        <dgm:gSegment X1="207" Y1="79" X2="423" Y2="79"/>
         <dgm:baseColor r="153" g="153" b="153"/>
         <dgm:selectedColor r="49" g="106" b="196"/>
     </dgm:gWireLink>
     <dgm:gWireLink source="CustomerServiceImpl/businessservice.-1155362155.RemoveCustomerService" target="RemoveCustomerService" width="2">
-        <dgm:gSegment X1="562" Y1="79" X2="586" Y2="79"/>
-        <dgm:gSegment X1="586" Y1="79" X2="586" Y2="36"/>
-        <dgm:gSegment X1="586" Y1="36" X2="806" Y2="36"/>
+        <dgm:gSegment X1="573" Y1="79" X2="597" Y2="79"/>
+        <dgm:gSegment X1="597" Y1="79" X2="597" Y2="36"/>
+        <dgm:gSegment X1="597" Y1="36" X2="828" Y2="36"/>
         <dgm:baseColor r="153" g="153" b="153"/>
         <dgm:selectedColor r="49" g="106" b="196"/>
     </dgm:gWireLink>
     <dgm:gWireLink source="CustomerServiceImpl/businessservice.-1155362155.AddCustomerService" target="AddCustomerService" width="2">
-        <dgm:gSegment X1="562" Y1="104" X2="586" Y2="104"/>
-        <dgm:gSegment X1="586" Y1="104" X2="586" Y2="124"/>
-        <dgm:gSegment X1="586" Y1="124" X2="806" Y2="124"/>
+        <dgm:gSegment X1="573" Y1="104" X2="597" Y2="104"/>
+        <dgm:gSegment X1="597" Y1="104" X2="597" Y2="124"/>
+        <dgm:gSegment X1="597" Y1="124" X2="828" Y2="124"/>
         <dgm:baseColor r="153" g="153" b="153"/>
         <dgm:selectedColor r="49" g="106" b="196"/>
     </dgm:gWireLink>

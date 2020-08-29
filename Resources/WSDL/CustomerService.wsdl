@@ -33,13 +33,9 @@
             <wsdl:input message="tns:requestMessage"/>
             <wsdl:output message="tns:replyMessage"/>
         </wsdl:operation>
-        <wsdl:operation name="removeCustomer">
-            <wsdl:input message="tns:removeCustomerReq"/>
-            <wsdl:output message="tns:replyMessage"/>
-        </wsdl:operation>
         <wsdl:operation name="removeCustomerData">
             <wsdl:input message="tns:removeCustomerData_inputMessage"/>
-            <wsdl:output message="tns:removeCustomerData_outputMessage"/>
+            <wsdl:output message="tns:replyMessage"/>
         </wsdl:operation>
     </wsdl:portType>
     <wsdl:binding name="customer_service_bind" type="tns:customer_service_ptt">
@@ -53,22 +49,13 @@
                 <soap:body use="literal" namespace="http://xmlns.oracle.com/DemoRestAdapter/CustomerRestAdapter/CustomerService"/>
             </wsdl:output>
         </wsdl:operation>
-        <wsdl:operation name="removeCustomer">
-            <soap:operation style="document" soapAction="removeCustomer"/>
-            <wsdl:input>
-                <soap:body use="literal" namespace="http://xmlns.oracle.com/DemoRestAdapter/CustomerRestAdapter/CustomerService"/>
-            </wsdl:input>
-            <wsdl:output>
-                <soap:body use="literal" namespace="http://xmlns.oracle.com/DemoRestAdapter/CustomerRestAdapter/CustomerService"/>
-            </wsdl:output>
-        </wsdl:operation>
         <wsdl:operation name="removeCustomerData">
-            <soap:operation soapAction="removeCustomerData"/>
+            <soap:operation style="document" soapAction="removeCustomerData"/>
             <wsdl:input>
-                <soap:body use="literal"/>
+                <soap:body use="literal" namespace="http://xmlns.oracle.com/DemoRestAdapter/CustomerRestAdapter/CustomerService"/>
             </wsdl:input>
             <wsdl:output>
-                <soap:body use="literal"/>
+                <soap:body use="literal" namespace="http://xmlns.oracle.com/DemoRestAdapter/CustomerRestAdapter/CustomerService"/>
             </wsdl:output>
         </wsdl:operation>
     </wsdl:binding>
